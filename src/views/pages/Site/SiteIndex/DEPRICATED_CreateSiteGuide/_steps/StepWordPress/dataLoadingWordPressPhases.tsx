@@ -1,0 +1,18 @@
+export const dataLoadingWordPressPhases = [
+    "Choosing the Perfect Theme",
+    "Configuring Essential Settings",
+    "Setting Up Permalinks",
+    "Installing and Customizing Plugins",
+    "Creating Pages and Posts",
+    "Customizing the Website's Appearance",
+    "Optimizing Website Performance",
+    "Setting Up SEO Plugins",
+    "Configuring Backup Solutions",
+    "Testing Website Functionality",
+    "Securing the Website",
+    "Integrating Social Media Sharing",
+    "Setting Up Contact Forms",
+    "Adding E-commerce Functionality",
+    "Configuring User Roles and Permissions",
+    "Setting Up Analytics and Tracking",
+]
