@@ -7,15 +7,17 @@ export function useGuide() {
     if (!context) {
         throw new Error("useGuide must be used within an useGuide");
     }
-    
+   
     const { 
         menuList,
-        setSiteKeywords
+        setSiteKeywords,
+        nextStep
     } = context;
 
     return {
         menuList,
-        setSiteKeywords
+        setSiteKeywords,
+        nextStep
     };
 }
 

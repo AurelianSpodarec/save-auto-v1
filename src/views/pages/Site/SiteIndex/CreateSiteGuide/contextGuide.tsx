@@ -3,7 +3,8 @@ import react, { useState, useEffect, createContext } from "react";
 import useWebSocketGuide from "services/apis/autosite/websocket/useWebSocketGuide";
 import { createBlogSite } from "services/apis/autosite/requests/blog";
 
-import { configGuideMenu } from "./_menu/configGuideMenu";
+import { configGuideMenu } from "./configGuideMenu";
+
 
 export const GuideContext = createContext<any>({});
 
@@ -15,33 +16,28 @@ function GuideProvider({ children }: { children: React.ReactNode }) {
         money_keywords: "dog",
         domain: null,
     })
-    const [activeStepID, setActiveStepID] = useState({ id: "keywords" })
+    const [activeStepID, setActiveStepID] = useState("keywords");
+    const [activeMenuID, setActiveMenuID] = useState("keywords");
+
     const [menuList, setMenuList] = useState(configGuideMenu);
 
+    const [websocketData, setWebsocketData] = useState()
     const { startTask, socketResponse } = useWebSocketGuide(blogID);
+
 
     // Need to store the steps data somewhere in an array or something
     // Ran in background
     // ===================================================================================
     function mapSocketResponseToSteps() {
         socketResponse && socketResponse.forEach((response) => {
-
-            const stepIndex = stepsList.findIndex((step) => step.id === response.task);
-
-            if (stepIndex !== -1 && response.status === "completed") {
-                stepsList[stepIndex].data.extra = response.extra;
-                stepsList[stepIndex].data.isAvailable = true;
-            } else if (stepIndex === -1 && response.status === "completed") {
-                const newStep = {
-                    id: response.task,
-                    extra: response.extra,
-                };
-
-                stepsList.push(newStep);
-            }
-        });
-
-        setStepsList([...stepsList]);
+            const stepIndex = websocketData.findIndex((step) => step.id === response.task);
+            const newStep = {
+                id: response.task,
+                extra: response.extra,
+            };
+            websocketData.push(newStep);
+        }); // <-- Missing comma here
+        setWebsocketData([...websocketData]);
     }
 
 
@@ -49,7 +45,7 @@ function GuideProvider({ children }: { children: React.ReactNode }) {
     // Functions
     // ===================================================================================
 
-    async function nextStep() {
+    function nextStep() {
         setBlogID(3)
     }
 
@@ -59,12 +55,20 @@ function GuideProvider({ children }: { children: React.ReactNode }) {
     // ===================================================================================
 
     // useEffect(() => {
-    //     if (blogID !== null) {
-    //         startTask("persona");
-    //     }
-    // }, [blogID])
+    //     mapSocketResponseToSteps()
+    // }, [socketResponse])
 
-    const contextValues ={
+    useEffect(() => {
+        if (blogID !== undefined) {
+            console.log(blogID)
+            startTask("persona");
+            startTask("profile_picture");
+            startTask("logo")
+        }
+    }, [blogID])
+
+
+    const contextValues = {
         menuList,
         setSiteKeywords,
         nextStep

@@ -1,8 +1,9 @@
 import Lottie from 'lottie-react';
 
-// import StepNav from './_components/StepNav/StepNav';
-import StepsIndex from './_menu/GuideMenuIndex';
-import GuideMenuIndex from './_menu/GuideMenuIndex';
+import StepsIndex from './_steps/StepsIndex';
+import GuideMenuIndex from './_steps/StepsIndex';
+import useGuide from './useGuide';
+import StepNav from '../DEPRICATED_CreateSiteGuide/_components/StepNav/StepNav';
 // import useGuide from './_logic/useGuide';
 
 interface props {
@@ -11,9 +12,9 @@ interface props {
     onClose: () => void;
 }
 
-function CreateSiteGuide({ onOpen, onClose }:any) {
-    // const { isMenuFirstItem, activeMenuItem, stepCanShow, nextStep } = useGuide();
-    const isOpen = true;
+function CreateSiteGuide({ isOpen, onOpen, onClose }:any) {
+    const { nextStep } = useGuide();
+    // const isOpen = true;
     return (
         <div className={`relative z-30 ${isOpen ? "block" : "hidden"} `} aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -24,12 +25,13 @@ function CreateSiteGuide({ onOpen, onClose }:any) {
                 <div className={`
                         relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all lg:my-8 sm:w-full 
                         h-[670px] 
+                        max-w-5xl
                     `}>
                     {/* ${isMenuFirstItem ? "lg:max-w-2xl w-full" : "lg:max-w-5xl w-full"} */}
 
                     <div className="flex flex-row h-full">
                         <aside className="bg-[#061d40]">
-                            {/* <StepNav /> */}
+                            <StepNav />
                         </aside>
                         <div className="w-full h-full flex flex-col">
                             <header className="p-6 h-[150px] text-center">
@@ -52,7 +54,9 @@ function CreateSiteGuide({ onOpen, onClose }:any) {
                                 </button>
 
                                 <div>
-                                    {/* <button type='button' onClick={() => nextStep()} className={` ${stepCanShow ? "" : "cursor-not-allowed"} step-button ${stepCanShow ? "is-active" : ""}`}>
+                                    <button type='button' onClick={() => nextStep()} 
+                                    // className={` ${stepCanShow ? "" : "cursor-not-allowed"} step-button ${stepCanShow ? "is-active" : ""}`}
+                                    >
                                         <span></span>
                                         <span></span>
                                         <span></span>
@@ -63,7 +67,7 @@ function CreateSiteGuide({ onOpen, onClose }:any) {
                                                 <path d="M10.5858 6.34317L12 4.92896L19.0711 12L12 19.0711L10.5858 17.6569L16.2427 12L10.5858 6.34317Z" fill="currentColor"></path>
                                             </svg>
                                         </div>
-                                    </button> */}
+                                    </button>
                                 </div>
                                 
                             </div>

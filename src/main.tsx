@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         
             <DashboardProvider>
             <GuideProvider>
-                    <App />
+                <App />
             </GuideProvider>
             </DashboardProvider>
 

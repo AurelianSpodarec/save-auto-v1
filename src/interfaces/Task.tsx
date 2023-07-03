@@ -18,6 +18,6 @@ export interface ITaskExtra {
 
 export interface ITask {
     task: ITaskID;
-    status?: ITaskStatus;
-    extra: ITaskExtra | null | [];
+    status: ITaskStatus;
+    extra?: ITaskExtra | null | [];
 }
