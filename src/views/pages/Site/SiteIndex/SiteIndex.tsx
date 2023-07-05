@@ -3,39 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import { getBlogList } from 'services/apis/autosite/requests/blog';
 
 import Container from "atoms/Container";
-import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "atoms/Table";
 import Button from "atoms/Button/Button";
 
 import PageHeader from "molecules/PageHeader";
+import UpgradeNotification from 'molecules/UpgradeNotification';
 
-import TableSiteRow from "./TableSiteRow";
-
-import Skeleton from 'atoms/Skeleton';
+import RenderViewContent from './_components/RenderViewContent';
 import CreateSiteGuide from './CreateSiteGuide/CreateSiteGuide';
-
-function renderTableRows(isLoading, data) {
-    if (isLoading) {
-        return [...Array(10)].map((_, index) => (
-            <TableSiteRow key={index} isLoading={true} />
-        ));
-    }
-
-    if (!isLoading && Array.isArray(data) && data.length === 0) {
-        return <TableRow>
-             <TableCell>
-            Create New Site
-        </TableCell>
-        </TableRow>;
-    }
-
-    if (!isLoading && Array.isArray(data)) {
-        return data.map((site) => (
-            <TableSiteRow key={site.id} item={site} isLoading={isLoading} />
-        ));
-    }
-
-    return null;
-}
 
 function SiteIndex() {
     const [openModal, setOpenModal] = useState(false);
@@ -45,14 +19,10 @@ function SiteIndex() {
         queryFn: () => getBlogList()
     })
 
-    useEffect(() => {
-        console.log({data, isLoading, isError, error})
-    }, [data])
-
-    const columns = ['Domain', 'Scheduled Posts', 'Published Posts'];
-
     return (
         <Container>
+
+            <UpgradeNotification />
 
             <CreateSiteGuide isOpen={openModal} onOpen={() => setOpenModal(true)} onClose={() => setOpenModal(false)} />
 
@@ -61,29 +31,7 @@ function SiteIndex() {
             </PageHeader>
 
             <div className="flow-root">
-
-                <div className="relative">
-                <Table>
-
-                    <TableHead>
-                    <TableRow>
-                        {columns.map((column, _) => {
-                            return (
-                                <TableHeadCell key={column} scope="col">
-                                    {column}
-                                </TableHeadCell>
-                            )
-                        })}
-                    </TableRow>
-                    </TableHead>
-
-                    <TableBody>
-                        {renderTableRows(isLoading, data)}
-                    </TableBody>
-
-                </Table>
-                </div>
-
+                <RenderViewContent isLoading={isLoading} data={data} />
             </div>
         </Container>
     )

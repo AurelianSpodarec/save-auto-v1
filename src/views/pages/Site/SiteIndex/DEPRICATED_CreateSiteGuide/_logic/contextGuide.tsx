@@ -1,6 +1,6 @@
 import react, { useState, useEffect, createContext } from "react";
 
-import useWebSocketGuide from "services/apis/autosite/websocket/useWebSocketGuide";
+import useWebSocketBlog from "services/apis/autosite/websocket/useWebSocketBlog";
 import { createBlogSite } from "services/apis/autosite/requests/blog";
 
 import { configGuideMenu } from "./configGudeMenu";
@@ -18,7 +18,7 @@ function GuideProvider({ children }: { children: React.ReactNode }) {
     const [activeStepID, setActiveStepID] = useState({ id: "keywords" })
     const [menuList, setMenuList] = useState(configGuideMenu);
 
-    const { startTask, socketResponse } = useWebSocketGuide(blogID);
+    const { startTask, socketResponse } = useWebSocketBlog(blogID);
 
     // ===================================================================================
     // Functions

@@ -45,7 +45,7 @@ function AuthProvider({ children }: AuthConfig) {
             name: "",
             email: "",
         },
-        isAuthenticated: false,
+        isAuthenticated: true,
     });
     
     // Functions 
@@ -67,6 +67,7 @@ function AuthProvider({ children }: AuthConfig) {
 
     function checkIfAuthenticated() {
         const token = getTokenFromLocalStorage();
+        console.log("check if auth")
 
         if(token) {
             setAuthenticatedStatus(true)

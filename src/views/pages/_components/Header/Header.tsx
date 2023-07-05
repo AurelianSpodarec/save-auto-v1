@@ -11,7 +11,7 @@ function Header() {
     const { handleToggleMobileMenu, mobileOpen } = useDashboard()
 
     return (
-        <header className="flex lg:hidden sticky top-0 z-999 w-full border-b border-b-gray-600 min-h-[60px] drop-shadow-1 bg-[#24303f]">
+        <header className="flex lg:hidden sticky top-0 z-999 w-full border-b border-b-gray-600 min-h-[60px] drop-shadow-1 bg-[#181818]">
         <div className="flex justify-between items-center w-full relative mx-2">
 
             <div className="flex items-center space-x-4">

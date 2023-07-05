@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import useWebSocketGuide from "services/apis/autosite/websocket/useWebSocketGuide";
+import useWebSocketBlog from "services/apis/autosite/websocket/useWebSocketBlog";
 import { createBlogSite } from "services/apis/autosite/requests/blog";
 
 import { configGuideMenu } from "./configGudeMenu";
@@ -14,11 +14,13 @@ export const GuideContext = createContext<any>({});
 
 function DEPRICATED_GuideProvider({ children }: any) {
     const [blogID, setBlogID] = useState<number | null>(null);
-    const { startTask, socketResponse } = useWebSocketGuide(blogID);
+    const { startTask, socketResponse } = useWebSocketBlog(blogID);
     const navigate = useNavigate();
     console.log({configGuideMenu})
+    
     const [menuList, setMenuList] = useState(configGuideMenu);
     const [activeMenuItem, setActiveMenuItem] = useState<IGuideMenuItem | undefined>({ id: "keywords" });
+
     const isMenuFirstItem = activeMenuItem && activeMenuItem.id === "keywords";
     
     const [stepsList, setStepsList] = useState<IStep[]>(configGuideSteps)

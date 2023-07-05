@@ -46,9 +46,9 @@ import ResetPassword from "pages/Auth/ResetPassword/ResetPassword";
 import ResetPasswordConfirm from "pages/Auth/ResetPassword/ResetPasswordConfirm";
 import useAuth from "context/AuthContext/useAuth";
 
-
 function CustomRoutes() {
     const { isAuthenticated } = useAuth()
+
     let routes = useRoutes([
         {
             path: configPages.DASHBOARD.path,

@@ -2,7 +2,7 @@ import useDashboard from "context/DashboardContext/useDashboard";
 import useAuth from "context/AuthContext/useAuth";
 import { Link, NavLink } from "react-router-dom";
 import { configApp } from "config/configApp";
-import NavList from "./_components/NavList";
+import NavList from "../_components/NavList";
 import { configMenu } from "config/menu/menuConfig";
 import { DropdownContent, DropdownItem, DropdownPortal, DropdownTrigger, DropdownWrap } from "molecules/Dropdown/Dropdown";
 
@@ -20,9 +20,10 @@ function NavigationDesktop() {
                 hidden lg:flex
                 fixed left-0 h-screen
                 w-72
+                bg-[#181818]
             `}
         >
-            <nav className="flex flex-col h-full w-full text-white bg-gray-800">
+            <nav className="flex flex-col h-full w-full text-white">
                 <div>
                 <Link to="/" className={`flex shrink-0 p-4 ${!menuOpen ? "group-hover:hidden block" : "hidden "} `}> 
                     <div className="flex items-center justify-center">

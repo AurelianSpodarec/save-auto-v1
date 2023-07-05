@@ -1,6 +1,6 @@
 import Lottie from 'lottie-react';
 
-import StepNav from './_components/StepNav/StepNav';
+import StepNav from '../_components/StepNav/StepNav';
 import StepsIndex from './_steps/StepsIndex';
 import useGuide from './_logic/useGuide';
 

@@ -10,7 +10,7 @@ function LayoutDashboard() {
         <div className="relative h-full overflow-auto overflow-x-hidden">
         <div id="context-wrap" className={`flex flex-col h-full`}> 
 
-            {/* <Navigation /> */}
+            <Navigation />
 
             {/* <div className={`flex ${menuOpen ? "lg:pl-72" : "lg:pl-[50px]"}  flex-col h-full relative`}> */}
             <div className={`flex lg:ml-72 flex-col h-full relative`}>

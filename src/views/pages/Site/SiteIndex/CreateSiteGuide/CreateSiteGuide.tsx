@@ -1,20 +1,18 @@
-import Lottie from 'lottie-react';
-
-import StepsIndex from './_steps/StepsIndex';
 import GuideMenuIndex from './_steps/StepsIndex';
 import useGuide from './useGuide';
-import StepNav from '../DEPRICATED_CreateSiteGuide/_components/StepNav/StepNav';
-// import useGuide from './_logic/useGuide';
+import StepNav from '../_components/StepNav/StepNav';
 
-interface props {
+interface Props {
     isOpen: boolean;
     onOpen?: () => void;
     onClose: () => void;
 }
 
-function CreateSiteGuide({ isOpen, onOpen, onClose }:any) {
-    const { nextStep } = useGuide();
+function CreateSiteGuide({ isOpen, onOpen, onClose }:Props) {
+    const { menuNext, activeMenu, menuList } = useGuide();
     // const isOpen = true;
+    
+     // find the current item using the actrive id , [activeitemId])
     return (
         <div className={`relative z-30 ${isOpen ? "block" : "hidden"} `} aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -31,14 +29,15 @@ function CreateSiteGuide({ isOpen, onOpen, onClose }:any) {
 
                     <div className="flex flex-row h-full">
                         <aside className="bg-[#061d40]">
-                            <StepNav />
+                            <StepNav data={menuList} activeMenu={activeMenu} />
                         </aside>
                         <div className="w-full h-full flex flex-col">
+
                             <header className="p-6 h-[150px] text-center">
                                 <div className="h-16 w-16 mx-auto">
-                                    {/* {activeMenuItem?.icon} */}
+                                    {activeMenu?.icon}
                                 </div>
-                               {/* <h3 className="text-2xl font-bold">{activeMenuItem?.description}</h3> */}
+                               <h3 className="text-2xl font-bold">{activeMenu?.description}</h3>
                             </header>
 
                             <section className="h-full w-full px-6 overflow-y-auto overflow-x-hidden custom-scrollbar">
@@ -54,7 +53,7 @@ function CreateSiteGuide({ isOpen, onOpen, onClose }:any) {
                                 </button>
 
                                 <div>
-                                    <button type='button' onClick={() => nextStep()} 
+                                    <button type='button' onClick={() => menuNext()} 
                                     // className={` ${stepCanShow ? "" : "cursor-not-allowed"} step-button ${stepCanShow ? "is-active" : ""}`}
                                     >
                                         <span></span>

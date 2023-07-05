@@ -1,4 +1,4 @@
-function StepKeyWords() {
+function StepSetupWordPress() {
     return (
         <div>
 
@@ -10,4 +10,4 @@ function StepKeyWords() {
     )
 }
 
-export default StepKeyWords;
+export default StepSetupWordPress;

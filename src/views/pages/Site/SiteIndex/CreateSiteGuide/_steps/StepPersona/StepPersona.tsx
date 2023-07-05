@@ -4,6 +4,9 @@ function StepPersona() {
 
             <div>
                 Initial: Creating Persona... - then..
+            </div>
+
+            <div>
                 Completed: Persona Created
             </div>
 
